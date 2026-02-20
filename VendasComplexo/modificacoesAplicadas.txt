@@ -1,0 +1,40 @@
+Mudanças Principais:
+1. Nomes descritivos (padrão camelCase):
+
+u → idUsuario
+p → itensCarrinho
+d → codigoCupom
+k → temTaxaProcessamento
+res → resposta
+s, m, v → sucesso, mensagem, valorTotal
+2. Constantes bem definidas:
+
+Valores hardcoded agora são constantes (descontos, taxas, etc.)
+Objeto CUPONS centralizado
+Evita "magic numbers"
+3. Separação de responsabilidades:
+
+Função validarIdUsuario() - validação de ID
+Função validarUsuarioAtivo() - validação de status
+Função calcularTotalCarrinho() - lógica principal
+Função aplicarDescontoTipo() - desconto por tipo
+Função aplicarCupomDesconto() - aplicação de cupons
+Função aplicarTaxaProcessamento() - taxa final
+Função registrarOperacao() - logging
+4. Melhor estrutura:
+
+Validações em cascata (early return)
+Funções pequenas com responsabilidade única
+Código mais legível e testável
+Uso de === em comparações (strict equality)
+Uso de for...of em vez de for tradicional
+5. Melhor tratamento de erros:
+
+Retorna objetos estruturados
+Mensagens de erro mais descritivas
+Logging melhorado com timestamps
+6. Padrões modernos:
+
+Template literals para mensagens
+parseFloat().toFixed() para valores monetários
+Estrutura de resposta consistente

@@ -1,0 +1,83 @@
+Explicação do sistema_vendas_complexo.js
+
+Este arquivo contém um sistema de processamento de vendas com validações e descontos. Aqui está o fluxo:
+
+Função principal: processar(u, p, d, k)
+
+u = ID do usuário
+p = array de produtos (cada um com id, q = quantidade, p = preço unitário)
+d = código de desconto (cupom)
+k = boolean indicando se há taxa adicional
+Fluxo de execução:
+
+Validação do usuário: Verifica se o usuário existe no banco de dados fake e se está ativo.
+Validação do carrinho: Se há produtos, itera sobre cada um:
+Valida id > 0 e quantidade q > 0
+Verifica "estoque" (produtos com ID par têm estoque; ímpares não)
+Calcula subtotal: preço × quantidade
+Desconto por tipo: Aplica descontos automáticos conforme tipo de usuário:
+PREMIUM com subtotal > 100: desconto de 15%
+NORMAL com subtotal > 200: desconto de 10%
+Cupom de desconto: Se fornecido (d):
+PROMO10: desconto de R$ 10 (válido até junho = mês ≤ 5)
+FREE: desconto de R$ 50 (apenas se total > 500)
+Validação de saldo: Verifica se o usuário tem saldo suficiente.
+Taxa adicional: Se k = true, adiciona 5% de taxa ao total.
+Retorno: Objeto com sucesso (s), mensagem (m), e valor final (v).
+Exemplo:
+
+Usuário usr1 compra 2× produto ID 2 (R
+150
+c
+a
+d
+a
+)
++
+1
+×
+p
+r
+o
+d
+u
+t
+o
+I
+D
+3
+(
+R
+150cada)+1×produtoID3(R 50)
+ID 2 (par) têm estoque; ID 3 (ímpar) não → apenas ID 2 entra no carrinho
+Subtotal: 150 × 2 = R
+300
+(
+P
+R
+E
+M
+I
+U
+M
+c
+o
+m
+>
+100
+=
+15
+300(PREMIUMcom>100=15 255
+Cupom PROMO10 (mês atual ≤ 5) = R
+255
+−
+R
+255−R 10 = R$ 245
+Taxa 5% = R
+245
+×
+1.05
+=
+R
+245×1.05=R 257.25
+Saldo de usr1: R$ 500 (suficiente) ✓
